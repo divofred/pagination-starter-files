@@ -2,18 +2,19 @@ import { Link } from 'react-router-dom';
 import './NewsCard.css';
 
 export default function NewsCard({ newsItem }) {
-	const { title, body, imageUrl, id } = newsItem;
+	const { title, body, image } = newsItem.attributes;
+	const id = newsItem.id;
 	const synopsis = body.slice(0, 150);
 	return (
 		<Link to={'/newspost/' + id}>
 			<div className="newscard">
 				<div
 					className="newscardimg"
-					style={{ backgroundImage: `url(${imageUrl})` }}
+					style={{ backgroundImage: `url(${image})` }}
 				></div>
 				<div style={{ flex: '1 1 203%' }}>
 					<div className="newscardtitle">
-						<h1>{title.slice(0, 30)}</h1>
+						<h1>{title}</h1>
 					</div>
 					<div>
 						<span>{synopsis}</span>
