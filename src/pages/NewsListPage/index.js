@@ -54,7 +54,7 @@ export default function NewsList() {
 					<button
 						disabled={
 							pageDetails &&
-							start + pageSize >= pageDetails?.totalCount
+							start + pageSize >= pageDetails?.total
 						}
 						onClick={nextPage}
 					>
