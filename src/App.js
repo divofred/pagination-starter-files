@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
+import NewsList from './pages/NewsListPage';
+// import NewsList from './pages/NewListOffset';
+import NewsView from './pages/NewsView';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<section className="header">
+				<div className="headerName">NewsNet</div>
+			</section>
+			<div className="container">
+				<main className="main">
+					<BrowserRouter>
+						<Routes>
+							<Route path="/news" element={<NewsList />} />
+							<Route
+								path="/newspost/:id"
+								element={<NewsView />}
+							/>
+							<Route
+								exact
+								path="/"
+								element={<Navigate to="/news" />}
+							/>
+							<Route path="*" element={<NewsList />} />
+						</Routes>
+					</BrowserRouter>
+				</main>
+			</div>
+		</>
+	);
 }
 
 export default App;
