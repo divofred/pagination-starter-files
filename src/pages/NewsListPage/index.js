@@ -7,7 +7,7 @@ import AddNewsDialog from '../../components/AddNewsDialog';
 
 export default function NewsList() {
 	const [newsList, setNewsList] = useState([]);
-	const [showModal, setShowModal] = useState(true);
+	const [showModal, setShowModal] = useState(false);
 	const [start, setStart] = useState(0);
 	const [limit] = useState(2);
 	const [pageDetails, setPageDetails] = useState();
