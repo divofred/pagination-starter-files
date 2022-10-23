@@ -9,15 +9,15 @@ export default function NewsList() {
 	const [newsList, setNewsList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [start, setStart] = useState(0);
-	const [limit] = useState(2);
+	const [pageSize] = useState(2);
 	const [pageDetails, setPageDetails] = useState();
 
 	function nextPage() {
-		setStart(limit + start);
+		setStart(pageSize + start);
 	}
 
 	function prevPage() {
-		setStart(start - limit);
+		setStart(start - pageSize);
 	}
 
 	function showAddNewsDialog() {
@@ -37,18 +37,16 @@ export default function NewsList() {
 				</div>
 			</div>
 			<div>
-				{newsList
-					?.sort((a, b) => b.created_at.localeCompare(a.created_at))
-					?.map((newsItem, i) => (
-						<NewsCard newsItem={newsItem} key={i} />
-					))}
+				{newsList?.map((newsItem, i) => (
+					<NewsCard newsItem={newsItem} key={i} />
+				))}
 			</div>
 			{showModal ? (
 				<AddNewsDialog closeModal={showAddNewsDialog} />
 			) : null}
 			<div>
 				<span>
-					<button disabled={limit > start} onClick={prevPage}>
+					<button disabled={pageSize > start} onClick={prevPage}>
 						Prev
 					</button>
 				</span>
@@ -56,7 +54,7 @@ export default function NewsList() {
 					<button
 						disabled={
 							pageDetails &&
-							start + limit >= pageDetails?.totalCount
+							start + pageSize >= pageDetails?.total
 						}
 						onClick={nextPage}
 					>
